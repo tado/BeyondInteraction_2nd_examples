@@ -1,8 +1,7 @@
-#pragma once
+#pragma once //インクルードガード
 
 #include "ofMain.h"
-#include "ofBlob.h"
-
+#include "Ball.h" //Blob.hをインクルード
 class testApp : public ofBaseApp {
     
 public:
@@ -17,7 +16,9 @@ public:
     void mousePressed(int x, int y, int button);
     void mouseReleased(int x, int y, int button);
     void windowResized(int w, int h);
+    void gotMessage(ofMessage msg);
+    void dragEvent(ofDragInfo dragInfo);
     
-    //ofBlobのインスタンスを格納するvector(動的配列)blobs
-    vector <ofBlob> blobs;
+    //Ballのインスタンスを格納するvector(動的配列)balls
+    vector <Ball> balls;
 };

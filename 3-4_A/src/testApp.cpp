@@ -1,7 +1,9 @@
 #include "testApp.h"
 
+
 void testApp::setup(){
     //画面設定
+    ofSetFrameRate(60);
     ofSetVerticalSync(true);
     ofBackground(0, 0, 0);
     
@@ -17,10 +19,11 @@ void testApp::update(){
 }
 
 void testApp::draw(){
-    ofSetColor(0, 127, 255);
-    //circlesに格納された全ての円を描画
+    //circles配列に格納された全ての円を描画
     for(int i=0; i<circles.size(); i++) {
-        circles[i].draw();
+        ofFill(); //塗りつぶしあり
+        ofSetColor(0, 127, 255); //色を設定
+        circles[i].draw(); //全ての円を描画
     }
 }
 
@@ -30,7 +33,7 @@ void testApp::keyPressed(int key){
 void testApp::keyReleased(int key){
 }
 
-void testApp::mouseMoved(int x, int y){
+void testApp::mouseMoved(int x, int y ){
 }
 
 void testApp::mouseDragged(int x, int y, int button){
@@ -39,8 +42,8 @@ void testApp::mouseDragged(int x, int y, int button){
 void testApp::mousePressed(int x, int y, int button){
     //画面をクリックすると、円を追加
     float r = ofRandom(10, 40); //半径を設定
-    ofxBox2dCircle circle; //ofxBox2dCircle(円)クラスをインスタンス化
-    circle.setPhysics(1.0, 0.8, 0.5); //物理パラメータを設定(重さ、反発力、摩擦力)
+    ofxBox2dCircle circle; //ofxBox2dCircle（円）クラスをインスタンス化
+    circle.setPhysics(1.0, 0.8, 0.5); //物理パラメータを設定（重さ、反発力、摩擦力）
     circle.setup(box2d.getWorld(), mouseX, mouseY, r); //マウスの位置に円を設定
     circles.push_back(circle); //生成した円をcirclesに追加
 }
@@ -49,4 +52,10 @@ void testApp::mouseReleased(int x, int y, int button){
 }
 
 void testApp::windowResized(int w, int h){
+}
+
+void testApp::gotMessage(ofMessage msg){
+}
+
+void testApp::dragEvent(ofDragInfo dragInfo){
 }

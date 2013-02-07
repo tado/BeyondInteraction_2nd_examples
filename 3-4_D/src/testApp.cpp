@@ -2,6 +2,7 @@
 
 void testApp::setup(){
     ofBackground(0,0,0);
+    
     //幅320pixel、高さ240pixelでビデオ取り込み初期化
     vidGrabber.initGrabber(320,240);
     //OpenCVで解析する320pixel x 240pixelのカラー画像の領域を確保
@@ -12,6 +13,7 @@ void testApp::update(){
     //新規にフレームを取り込んだかを判定する変数
     bool bNewFrame = false;
     //最後に取り込んだフレームから変化があったかを判定
+    vidGrabber.update();
     bNewFrame = vidGrabber.isFrameNew();
     //新規のフレームの場合とりこみ実行
     if (bNewFrame){
@@ -44,4 +46,10 @@ void testApp::mouseReleased(int x, int y, int button){
 }
 
 void testApp::windowResized(int w, int h){
+}
+
+void testApp::gotMessage(ofMessage msg){
+}
+
+void testApp::dragEvent(ofDragInfo dragInfo){
 }

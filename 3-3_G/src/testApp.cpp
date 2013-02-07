@@ -9,16 +9,16 @@ void testApp::setup(){
 }
 
 void testApp::update(){
-    //blobsに格納されたofBlobのインスタンスの数だけupdate()をくりかえす
-    for (int i=0; i<blobs.size(); i++) {
-        blobs[i].update();
+    //ballsに格納されたBallのインスタンスの数だけupdate()をくりかえす
+    for (int i = 0; i < balls.size(); i++) {
+        balls[i].update();
     }
 }
 
 void testApp::draw(){
-    //blobsに格納されたofBlobのインスタンスの数だけdraw()をくりかえす
-    for (int i=0; i<blobs.size(); i++) {
-        blobs[i].draw();
+    //ballsに格納されたBallのインスタンスの数だけdraw()をくりかえす
+    for (int i = 0; i < balls.size(); i++) {
+        balls[i].draw();
     }
 }
 
@@ -31,7 +31,7 @@ void testApp::keyReleased(int key){
             ofToggleFullscreen();
             break;
         case 'r': //入力したキーが「r」なら、全ての円をクリア
-            blobs.clear();
+            balls.clear();
     }
 }
 
@@ -45,50 +45,60 @@ void testApp::mousePressed(int x, int y, int button){
 }
 
 void testApp::mouseReleased(int x, int y, int button){
-    int bSize = blobs.size(); //blobsの要素数をbSizeに格納
-    if (bSize < 1) { //もしまだ一つもなければ、新規にofBlobを追加
-        ofBlob b = ofBlob(); //インスタンス化
-        float dim = ofGetHeight()/3; //大きさを画面サイズの1/3に
-        b.setDim(dim); //大きさを設定
+    int bSize = balls.size(); //ballsの要素数をbSizeに格納
+    if (bSize < 1) { //もしまだ一つもなければ、新規にBallを追加
+        Ball b = Ball(); //インスタンス化
+        float radius = ofGetHeight()/3; //大きさを画面サイズの1/3に
+        b.setRadius(radius); //大きさを設定
         b.setSpeed(ofPoint(0,0)); //スピードは0で設定
         b.setPos(ofPoint(mouseX, mouseY)); //位置は画面の中心に設定
-        blobs.push_back(b); //動的配列blobsにofBlobのインスタンスbを追加
+        balls.push_back(b); //動的配列ballsにBallのインスタンスbを追加
     }
     
     //もし画面に1つでも円が表示されていたら、クリックした円を4つに分裂させる
     for (int i=0; i<bSize; i++) { //要素の数だけくりかえし
-        ofPoint pos = blobs[i].getPos(); //円の位置を取得してposに代入
-        float dim = blobs[i].getDim(); //円の大きさを取得してdimに代入
+        ofPoint pos = balls[i].getPos(); //円の位置を取得してposに代入
+        float radius = balls[i].getRadius(); //円の大きさを取得してradiusに代入
         float dist = ofDist(pos.x, pos.y, mouseX, mouseY); //マウスの位置と円の位置の距離を測定
-        if(dist < dim){ //もしクリックした場所が円の内部だったら、分裂させる
+        if(dist < radius){ //もしクリックした場所が円の内部だったら、分裂させる
             //円1：自分自身を縮小し、左に移動
-            blobs[i].setDim(dim*0.6);
-            blobs[i].setPos(ofPoint(pos.x-dim*0.7,pos.y));
-            blobs[i].setSpeed(ofPoint(ofRandom(-dim/150,dim/150),ofRandom(-dim/150,dim/150)));
+            balls[i].setRadius(radius*0.6);
+            balls[i].setPos(ofPoint(pos.x-radius*0.7,pos.y));
+            balls[i].setSpeed(ofPoint(ofRandom(-radius/150,radius/150), ofRandom(-radius/150,radius/150)));
             
-            //円2：新規にofBlobを生成し、右に配置
-            ofBlob b1 = ofBlob();
-            b1.setDim(dim*0.6);
-            b1.setPos(ofPoint(pos.x+dim*0.7,pos.y));
-            b1.setSpeed(ofPoint(ofRandom(-dim/150,dim/150),ofRandom(-dim/150,dim/150)));
-            blobs.push_back(b1);
+            //円2：新規にBallを生成し、右に配置
+            Ball b1 = Ball();
+            b1.setRadius(radius*0.6);
+            b1.setPos(ofPoint(pos.x+radius*0.7,pos.y));
+            b1.setSpeed(ofPoint(ofRandom(-radius/150,radius/150), ofRandom(-radius/150,radius/150)));
+            balls.push_back(b1);
             
-            //円3：新規にofBlobを生成し、上に配置
-            ofBlob b2 = ofBlob();
-            b2.setDim(dim*0.6);
-            b2.setPos(ofPoint(pos.x,pos.y-dim*0.7));
-            b2.setSpeed(ofPoint(ofRandom(-dim/150,dim/150),ofRandom(-dim/150,dim/150)));
-            blobs.push_back(b2);
+            //円3：新規にBallを生成し、上に配置
+            Ball b2 = Ball();
+            b2.setRadius(radius*0.6);
+            b2.setPos(ofPoint(pos.x,pos.y-radius*0.7));
+            b2.setSpeed(ofPoint(ofRandom(-radius/150,radius/150), ofRandom(-radius/150,radius/150)));
+            balls.push_back(b2);
             
-            //円4：新規にofBlobを生成し、下に配置
-            ofBlob b3 = ofBlob();
-            b3.setDim(dim*0.6);
-            b3.setPos(ofPoint(pos.x,pos.y+dim*0.7));
-            b3.setSpeed(ofPoint(ofRandom(-dim/150,dim/150),ofRandom(-dim/150,dim/150)));
-            blobs.push_back(b3);
+            //円4：新規にBallを生成し、下に配置
+            Ball b3 = Ball();
+            b3.setRadius(radius*0.6);
+            b3.setPos(ofPoint(pos.x,pos.y+radius*0.7));
+            b3.setSpeed(ofPoint(ofRandom(-radius/150,radius/150), ofRandom(-radius/150,radius/150)));
+            balls.push_back(b3);
         }
     }
 }
 
+
 void testApp::windowResized(int w, int h){
+    
+}
+
+void testApp::gotMessage(ofMessage msg){
+    
+}
+
+void testApp::dragEvent(ofDragInfo dragInfo){ 
+    
 }

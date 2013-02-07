@@ -22,9 +22,8 @@ void testApp::setup(){
 void testApp::update(){
     //新規にフレームを取り込んだかを判定する変数
     bool bNewFrame = false;
-    //1フレーム映像を取り込み
-    vidGrabber.update();
     //最後に取り込んだフレームから変化があったかを判定
+    vidGrabber.update();
     bNewFrame = vidGrabber.isFrameNew();
     //新規のフレームの場合とりこみ実行
     if (bNewFrame){
@@ -49,20 +48,16 @@ void testApp::update(){
 }
 
 void testApp::draw(){
-    ofNoFill();
-    ofSetColor(0xffffff);
     //取り込んだ画像を(10,10)の位置に表示
     colorImg.draw(10,10);
     //グレースケールに変換した画像を(340,10)の位置に表示
     grayImage.draw(340,10);
-    //記録した背景画像を(10,260)の位置に表示
+    //学習した背景画像を(10,260)の位置に表示
     grayBg.draw(10,260);
-    //背景画像と現在の画像との差分を(340,260)の位置に表示
+    //背景画像と現在の画像との差分を(360,280)の位置に表示
     grayDiff.draw(340,260);
     //抽出した輪郭線の情報を(340,500)の位置に描画する
-    for (int i = 0; i < contourFinder.nBlobs; i++){
-        contourFinder.blobs[i].draw(340,500);
-    }
+    contourFinder.draw(340, 500);
 }
 
 void testApp::keyPressed(int key){
@@ -97,4 +92,10 @@ void testApp::mouseReleased(int x, int y, int button){
 }
 
 void testApp::windowResized(int w, int h){
+}
+
+void testApp::gotMessage(ofMessage msg){
+}
+
+void testApp::dragEvent(ofDragInfo dragInfo){
 }

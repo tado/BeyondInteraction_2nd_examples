@@ -1,16 +1,17 @@
 #include "testApp.h"
 
+
 void testApp::setup(){
     //画面設定
+    ofSetFrameRate(60);
     ofSetVerticalSync(true);
-    ofEnableAlphaBlending();
-    ofSetCircleResolution(64);
     ofBackground(0, 0, 0);
+    ofEnableAlphaBlending();
     
     //Box2D初期設定
     box2d.init(); //Box2Dの世界を初期化
     box2d.setGravity(0,5); //重力を設定、下に5の力
-    box2d.createBounds(0, 0, ofGetWidth(), ofGetHeight()); //四隅に壁を追加
+    box2d.createBounds(0, 0, ofGetWidth(), ofGetHeight()); //画面を壁で囲む
     box2d.setFPS(30); //30fpsで表示
 }
 
@@ -19,9 +20,10 @@ void testApp::update(){
 }
 
 void testApp::draw(){
-    //circlesに格納された全ての図形を描画
+    //circles配列に格納された全ての円を描画
     for(int i=0; i<circles.size(); i++) {
-        circles[i].draw();
+        ofFill(); //塗りつぶしあり
+        circles[i].draw(); //全ての円を描画
     }
 }
 
@@ -39,7 +41,7 @@ void testApp::keyPressed(int key){
 void testApp::keyReleased(int key){
 }
 
-void testApp::mouseMoved(int x, int y){
+void testApp::mouseMoved(int x, int y ){
 }
 
 void testApp::mouseDragged(int x, int y, int button){
@@ -52,4 +54,10 @@ void testApp::mouseReleased(int x, int y, int button){
 }
 
 void testApp::windowResized(int w, int h){
+}
+
+void testApp::gotMessage(ofMessage msg){
+}
+
+void testApp::dragEvent(ofDragInfo dragInfo){
 }

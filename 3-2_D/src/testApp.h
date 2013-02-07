@@ -1,5 +1,4 @@
-#ifndef _TEST_APP
-#define _TEST_APP
+#pragma once
 
 #include "ofMain.h"
 
@@ -20,8 +19,6 @@ public:
     void audioReceived 	(float * input, int bufferSize, int nChannels); 
 	
     int bufSize; //バッファーサイズ
-    float * left; //左チャンネルのサンプル
-    float * right; //右チャンネルのサンプル
+    float *left; //左チャンネルのサンプル
+    float *right; //右チャンネルのサンプル
 };
-
-#endif

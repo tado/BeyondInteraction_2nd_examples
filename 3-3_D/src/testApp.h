@@ -1,8 +1,7 @@
-#pragma once
+#pragma once //インクルードガード
 
 #include "ofMain.h"
-#include "ofBlob.h"
-
+#include "Ball.h" //Blob.hをインクルード
 class testApp : public ofBaseApp {
     
 public:
@@ -17,6 +16,8 @@ public:
     void mousePressed(int x, int y, int button);
     void mouseReleased(int x, int y, int button);
     void windowResized(int w, int h);
-    
-    ofBlob blob;
+    void gotMessage(ofMessage msg);
+    void dragEvent(ofDragInfo dragInfo);
+        
+    Ball myBall; //BallクラスをインスタンスmyBallを生成
 };

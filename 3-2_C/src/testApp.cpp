@@ -10,7 +10,7 @@ void testApp::setup(){
     waveShape = 1; //波形
     ofSetFrameRate(30);
     ofBackground(32, 32, 32);
-    ofSoundStreamSetup(2, 0, this); //サウンドストリームの準備、左右2ch
+    ofSoundStreamSetup(2, 0); //サウンドストリームの準備、左右2ch
 }
 
 void testApp::update(){
@@ -20,17 +20,23 @@ void testApp::draw(){
     float audioHeight = ofGetHeight()/2.0f;
     float phaseDiff = ofGetWidth()/float(bufSize);
     
-    ofSetColor(0,0,255);
+    ofSetColor(0,0,255); //波形を描く色
+    ofNoFill(); //塗り潰しをしない
+    ofSetLineWidth(2); //線の太さを2pixで
     
     //左チャンネル波形を描画
+    ofBeginShape();
     for (int i = 0; i < bufSize; i++){
-        ofLine(i*phaseDiff, audioHeight/2, i*phaseDiff, audioHeight/2+lAudio[i]*audioHeight);
+        ofVertex(i * phaseDiff, audioHeight/2 + lAudio[i] * audioHeight);
     }
+    ofEndShape();
     
     //右チャンネル波形を描画
+    ofBeginShape();
     for (int i = 0; i < bufSize; i++){
-        ofLine(i*phaseDiff, audioHeight/2*3, i*phaseDiff, audioHeight/2*3+rAudio[i]*audioHeight);
+        ofVertex(i * phaseDiff, audioHeight / 2 * 3 + rAudio[i] * audioHeight);
     }
+    ofEndShape();
 }
 
 void testApp::keyPressed  (int key){

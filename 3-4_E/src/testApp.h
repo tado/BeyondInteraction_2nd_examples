@@ -3,7 +3,7 @@
 #include "ofMain.h"
 #include "ofxOpenCv.h"
 
-class testApp : public ofBaseApp {
+class testApp : public ofBaseApp{
     
 public:
     void setup();
@@ -17,6 +17,8 @@ public:
     void mousePressed(int x, int y, int button);
     void mouseReleased(int x, int y, int button);
     void windowResized(int w, int h);
+    void dragEvent(ofDragInfo dragInfo);
+    void gotMessage(ofMessage msg);
     
     ofVideoGrabber vidGrabber; //ビデオ入力
     ofxCvColorImage colorImg; //OpenCVで扱うカラーイメージ

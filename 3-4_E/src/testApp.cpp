@@ -14,9 +14,8 @@ void testApp::setup(){
 void testApp::update(){
     //新規にフレームを取り込んだかを判定する変数
     bool bNewFrame = false;
-    //1フレーム映像を取り込み
-    vidGrabber.update();
     //最後に取り込んだフレームから変化があったかを判定
+    vidGrabber.update();
     bNewFrame = vidGrabber.isFrameNew();
     //新規のフレームの場合とりこみ実行
     if (bNewFrame){
@@ -53,4 +52,10 @@ void testApp::mouseReleased(int x, int y, int button){
 }
 
 void testApp::windowResized(int w, int h){
+}
+
+void testApp::gotMessage(ofMessage msg){
+}
+
+void testApp::dragEvent(ofDragInfo dragInfo){
 }

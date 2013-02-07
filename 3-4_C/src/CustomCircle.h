@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ofMain.h"
 #include "ofxBox2d.h"
 
 //ofxBox2dCircleを継承したクラスCustomCircleを定義

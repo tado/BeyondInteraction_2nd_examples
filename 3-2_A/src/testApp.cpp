@@ -6,7 +6,7 @@ void testApp::setup(){
     pan = 0.5; //左右の定位
     phase = 0; //位相
     frequency = 440; //周波数
-    ofSoundStreamSetup(2, 0, this); //サウンドストリームの準備、左右2ch
+    ofSoundStreamSetup(2, 0); //サウンドストリームの準備、左右2ch
 }
 
 void testApp::update(){

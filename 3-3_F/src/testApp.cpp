@@ -9,42 +9,57 @@ void testApp::setup(){
 }
 
 void testApp::update(){
-    //blobsに格納されたofBlobのインスタンスの数だけupdate()をくりかえす
-    for (int i=0; i<blobs.size(); i++) {
-        blobs[i].update();
+    //ballsに格納されたBallのインスタンスの数だけupdate()をくりかえす
+    for (int i = 0; i < balls.size(); i++) {
+        balls[i].update();
     }
 }
 
 void testApp::draw(){
-    //blobsに格納されたofBlobのインスタンスの数だけdraw()をくりかえす
-    for (int i=0; i<blobs.size(); i++) {
-        blobs[i].draw();
+    //ballsに格納されたBallのインスタンスの数だけdraw()をくりかえす
+    for (int i = 0; i < balls.size(); i++) {
+        balls[i].draw();
     }
 }
 
 void testApp::keyPressed(int key){
+    
 }
 
 void testApp::keyReleased(int key){
+    
 }
 
 void testApp::mouseMoved(int x, int y){
+    
 }
 
 void testApp::mouseDragged(int x, int y, int button){
+    
 }
 
 void testApp::mousePressed(int x, int y, int button){
+    
 }
 
 void testApp::mouseReleased(int x, int y, int button){
-    //マウスをクリックした位置に、新規にofBlobsのインスタンスを生成
-    ofBlob b; //ofBlobsをインスタンス化してbを生成
+    //マウスをクリックした位置に、新規にBallsのインスタンスを生成
+    Ball b; //Ballsをインスタンス化してbを生成
     b.setPos(ofPoint(mouseX,mouseY)); //位置をマウスの場所に
-    b.setDim(ofRandom(10,40)); //大きさをランダムに設定
+    b.setRadius(ofRandom(10,40)); //大きさをランダムに設定
     b.setSpeed(ofPoint(ofRandom(-3,3),ofRandom(-3,3))); //スピードをランダムに
-    blobs.push_back(b); //生成されたインスタンスbを動的配列blobsに追加
+    balls.push_back(b); //生成されたインスタンスbを動的配列ballsに追加
 }
 
+
 void testApp::windowResized(int w, int h){
+    
+}
+
+void testApp::gotMessage(ofMessage msg){
+    
+}
+
+void testApp::dragEvent(ofDragInfo dragInfo){ 
+    
 }

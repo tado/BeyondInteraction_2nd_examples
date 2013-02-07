@@ -17,6 +17,7 @@ void testApp::update(){
 }
 
 void testApp::draw(){
+    // 音量に応じた半径でマウスの位置に円を描く
     ofSetColor(0, 63, 255, 180);
     ofCircle(mouseX, mouseY, radius);
 }

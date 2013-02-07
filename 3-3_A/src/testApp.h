@@ -1,9 +1,7 @@
-#ifndef _TEST_APP //インクルードガード
-#define _TEST_APP
+#pragma once //インクルードガード
 
 #include "ofMain.h"
-#include "ofBlob.h" //Blob.hをインクルード
-
+#include "Ball.h" //Blob.hをインクルード
 class testApp : public ofBaseApp {
     
 public:
@@ -18,8 +16,8 @@ public:
     void mousePressed(int x, int y, int button);
     void mouseReleased(int x, int y, int button);
     void windowResized(int w, int h);
-    
-    ofBlob blob; //ofBlobクラスをインスタンスblobを生成
+    void gotMessage(ofMessage msg);
+    void dragEvent(ofDragInfo dragInfo);
+        
+    Ball myBall; //BallクラスをインスタンスmyBallを生成
 };
-
-#endif

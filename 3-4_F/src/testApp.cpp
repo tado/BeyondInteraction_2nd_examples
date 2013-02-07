@@ -22,9 +22,8 @@ void testApp::setup(){
 void testApp::update(){
     //新規にフレームを取り込んだかを判定する変数
     bool bNewFrame = false;
-    //1フレーム映像を取り込み
-    vidGrabber.update();
     //最後に取り込んだフレームから変化があったかを判定
+    vidGrabber.update();
     bNewFrame = vidGrabber.isFrameNew();
     //新規のフレームの場合とりこみ実行
     if (bNewFrame){
@@ -39,7 +38,7 @@ void testApp::update(){
             //背景の記録をしないモードに戻す
             bLearnBakground = false;
         }
-        //背景画像と現在の画像の差分の絶対値を取得    
+        //背景画像と現在の画像の差分の絶対値を取得
         grayDiff.absDiff(grayBg, grayImage);
         //差分画像を設定した閾値を境に二値化
         grayDiff.threshold(threshold);
@@ -89,4 +88,10 @@ void testApp::mouseReleased(int x, int y, int button){
 }
 
 void testApp::windowResized(int w, int h){
+}
+
+void testApp::gotMessage(ofMessage msg){
+}
+
+void testApp::dragEvent(ofDragInfo dragInfo){
 }
