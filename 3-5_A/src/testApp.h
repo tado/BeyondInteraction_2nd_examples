@@ -2,10 +2,9 @@
 
 #include "ofMain.h"
 #include "ofxBox2d.h"
-#include "CustomCircle.h"
-#include "CustomJoint.h"
+#include "CustomRect.h"
 
-class testApp : public ofBaseApp {
+class testApp : public ofBaseApp{
     
 public:
     void setup();
@@ -19,11 +18,12 @@ public:
     void mousePressed(int x, int y, int button);
     void mouseReleased(int x, int y, int button);
     void windowResized(int w, int h);
+    void dragEvent(ofDragInfo dragInfo);
+    void gotMessage(ofMessage msg);
     
-    //物理エンジンofxBox2dのインスタンス化
-    ofxBox2d box2d;
-    //ofxBox2dCircleを拡張して円形のパーティクルを生成、ベクターcirclesに格納
-    vector <CustomCircle*> circles;
-    //物体同士を結ぶ「ばね」のクラスofxBox2dJointを拡張、ベクターjointsに格納
-    vector <CustomJoint*> joints;
+	ofxBox2d box2d; //Box2dのインスタンス
+	vector <CustomRect> particles; //パーティクルのVector配列
+    ofxBox2dRect dac; //中心の星(ofxBox2dRect)
+	ofImage particleImage; //パーティクル画像
+	ofImage dacImage; //中心の星の画像
 };
