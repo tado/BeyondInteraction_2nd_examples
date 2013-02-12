@@ -31,10 +31,10 @@ void testApp::update(){
         //座標の更新
         particles[i].update();
         //中心の物体からの引力を計算
-        particles[i].addAttractionPoint(dac.getPosition(), 0.005);
+        particles[i].addAttractionPoint(dac.getPosition(), 0.1);
         //全てのパーティクル同士の引力を計算
         for (int j = i + 1; j < particles.size(); j++) {
-            particles[j].addAttractionPoint(particles[i].getPosition(), 0.00001);
+            particles[j].addAttractionPoint(particles[i].getPosition(), 0.001);
         }
     }
 }
