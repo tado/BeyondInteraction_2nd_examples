@@ -43,10 +43,6 @@ void testApp::draw(){
 }
 
 void testApp::keyPressed  (int key){
-    //「s」キーを押すと、ビデオ取り込みの設定画面を表示
-    if (key == 's' || key == 'S'){
-        vidGrabber.videoSettings();
-    }
 }
 
 void testApp::keyReleased(int key){
