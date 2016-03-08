@@ -21,8 +21,8 @@ void testApp::draw(){
     //画像データのビットマップ情報を配列に格納
     unsigned char * pixels = myImage.getPixels();
     //画像の幅と高さを所得
-    int w = myImage.width;
-    int h = myImage.height;
+    int w = myImage.getWidth();
+    int h = myImage.getHeight();
     //画像を8ピクセル間隔でスキャン
     for (int i = 0; i < w; i+=8){
         for (int j = 0; j < h; j+=8){
