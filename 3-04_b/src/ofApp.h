@@ -4,7 +4,7 @@
 #include "ofxBox2d.h" //ofxBox2dのアドオンを読み込み
 #include "CustomCircle.h" //CustomCircleクラスを使用
 
-class testApp : public ofBaseApp{
+class ofApp : public ofBaseApp{
     
 public:
     void setup();
@@ -22,5 +22,5 @@ public:
     void gotMessage(ofMessage msg);
     
     ofxBox2d box2d; //Box2Dのインスタンス
-    vector <CustomCircle> circles; //CustomCircleのインスタンスを格納するvector
+    vector <shared_ptr<CustomCircle> > circles; //CustomCircleのインスタンスを格納するvector
 };

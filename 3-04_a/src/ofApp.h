@@ -3,7 +3,7 @@
 #include "ofMain.h"
 #include "ofxBox2d.h" //ofxBox2dのアドオンを読み込み
 
-class testApp : public ofBaseApp{
+class ofApp : public ofBaseApp{
     
 public:
     void setup();
@@ -21,5 +21,5 @@ public:
     void gotMessage(ofMessage msg);
     
     ofxBox2d box2d; //Box2Dのインスタンス
-    vector <ofxBox2dCircle> circles; //Box2D内での円を格納するVector配列
+    vector <shared_ptr<ofxBox2dCircle> > circles; //Box2D内での円を格納するVector配列
 };
