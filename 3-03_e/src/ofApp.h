@@ -2,7 +2,7 @@
 
 #include "ofMain.h"
 #include "Ball.h" //Blob.hをインクルード
-class testApp : public ofBaseApp {
+class ofApp : public ofBaseApp {
     
 public:
     void setup();

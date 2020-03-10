@@ -1,6 +1,6 @@
-#include "testApp.h"
+#include "ofApp.h"
 
-void testApp::setup(){
+void ofApp::setup(){
     //画面の設定
     ofBackground(0, 0, 0);
     ofSetCircleResolution(32);
@@ -8,24 +8,24 @@ void testApp::setup(){
     ofSetFrameRate(30);
 }
 
-void testApp::update(){
+void ofApp::update(){
     //ballsに格納されたBallのインスタンスの数だけupdate()をくりかえす
     for (int i = 0; i < balls.size(); i++) {
         balls[i].update();
     }
 }
 
-void testApp::draw(){
+void ofApp::draw(){
     //ballsに格納されたBallのインスタンスの数だけdraw()をくりかえす
     for (int i = 0; i < balls.size(); i++) {
         balls[i].draw();
     }
 }
 
-void testApp::keyPressed(int key){
+void ofApp::keyPressed(int key){
 }
 
-void testApp::keyReleased(int key){
+void ofApp::keyReleased(int key){
     switch (key) { //タイプしたキーを判定
         case 'f': //入力したキーが「f」なら、フルスクリーン表示に切り替える
             ofToggleFullscreen();
@@ -35,16 +35,16 @@ void testApp::keyReleased(int key){
     }
 }
 
-void testApp::mouseMoved(int x, int y){
+void ofApp::mouseMoved(int x, int y){
 }
 
-void testApp::mouseDragged(int x, int y, int button){
+void ofApp::mouseDragged(int x, int y, int button){
 }
 
-void testApp::mousePressed(int x, int y, int button){
+void ofApp::mousePressed(int x, int y, int button){
 }
 
-void testApp::mouseReleased(int x, int y, int button){
+void ofApp::mouseReleased(int x, int y, int button){
     int bSize = balls.size(); //ballsの要素数をbSizeに格納
     if (bSize < 1) { //もしまだ一つもなければ、新規にBallを追加
         Ball b = Ball(); //インスタンス化
@@ -91,14 +91,14 @@ void testApp::mouseReleased(int x, int y, int button){
 }
 
 
-void testApp::windowResized(int w, int h){
+void ofApp::windowResized(int w, int h){
     
 }
 
-void testApp::gotMessage(ofMessage msg){
+void ofApp::gotMessage(ofMessage msg){
     
 }
 
-void testApp::dragEvent(ofDragInfo dragInfo){ 
+void ofApp::dragEvent(ofDragInfo dragInfo){ 
     
 }
