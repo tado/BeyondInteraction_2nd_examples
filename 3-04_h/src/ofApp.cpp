@@ -1,6 +1,6 @@
-#include "testApp.h"
+#include "ofApp.h"
 
-void testApp::setup(){
+void ofApp::setup(){
     ofBackground(0,0,0);
     ofSetFrameRate(60);
     
@@ -29,14 +29,14 @@ void testApp::setup(){
     //CustomCircleを1000コ配置
     static const int NUM = 1000;
     for (int i = 0; i < NUM; i++) {
-        CustomCircle circle;
-        circle.setPhysics(1.0, 0.8, 0.0);
-        circle.setup(box2d.getWorld(), ofRandom(colorImg.width), ofRandom(colorImg.height), 3);
+        auto circle = make_shared<CustomCircle>();
+        circle->setPhysics(1.0, 0.8, 0.0);
+        circle->setup(box2d.getWorld(), ofRandom(colorImg.width), ofRandom(colorImg.height), 3);
         circles.push_back(circle);
     }
 }
 
-void testApp::update(){
+void ofApp::update(){
     //box2d更新
     box2d.update();
     
@@ -48,7 +48,7 @@ void testApp::update(){
     //新規のフレームの場合とりこみ実行
     if (bNewFrame){
         //OpenCVで解析するカラー画像領域に取得した映像を格納
-        colorImg.setFromPixels(vidGrabber.getPixels(), 320,240);
+        colorImg.setFromPixels(vidGrabber.getPixels());
         //取り込んだカラー映像をグレースケールに変換
         grayImage = colorImg;
         //新規に背景を記録する場合
@@ -66,7 +66,7 @@ void testApp::update(){
         contourFinder.findContours(grayDiff, 20, (340*240)/3, 10, false);
         //境界線の円をクリア
         for (int i = 0; i < contourCircles.size(); i++) {
-            contourCircles[i].destroy();
+            contourCircles[i]->destroy();
         }
         contourCircles.clear();
         //検出された物体(Blobs)の数だけ分析
@@ -75,8 +75,8 @@ void testApp::update(){
                 //輪郭線にそって等間隔に座標を抽出
                 ofPoint pos = contourFinder.blobs[i].pts[j];
                 //輪郭線に並べるofxBox2dCircleを追加
-                ofxBox2dCircle circle;
-                circle.setup(box2d.getWorld(), pos.x, pos.y, 4);
+                auto circle = make_shared<ofxBox2dCircle>();
+                circle->setup(box2d.getWorld(), pos.x, pos.y, 4);
                 //Vector配列contourCirclesに追加
                 contourCircles.push_back(circle);
             }
@@ -84,7 +84,7 @@ void testApp::update(){
     }
 }
 
-void testApp::draw(){
+void ofApp::draw(){
     //画面に対する映像の比率を計算
     float ratioX = ofGetWidth()/320;
     float ratioY = ofGetHeight()/240;
@@ -102,16 +102,16 @@ void testApp::draw(){
     ofNoFill();
     ofSetColor(255, 0, 0);
     for (int i = 0; i < contourCircles.size(); i++) {
-        contourCircles[i].draw();
+        contourCircles[i]->draw();
     }
     //CustomCircle描画
     for (int i = 0; i < circles.size(); i++) {
-        circles[i].draw();
+        circles[i]->draw();
     }
     ofPopMatrix();
 }
 
-void testApp::keyPressed(int key){
+void ofApp::keyPressed(int key){
     switch (key){
         case ' ': //スペースキーで背景を学習モードに
             bLearnBakground = true;
@@ -127,26 +127,26 @@ void testApp::keyPressed(int key){
     }
 }
 
-void testApp::keyReleased(int key){
+void ofApp::keyReleased(int key){
 }
 
-void testApp::mouseMoved(int x, int y ){
+void ofApp::mouseMoved(int x, int y ){
 }
 
-void testApp::mouseDragged(int x, int y, int button){
+void ofApp::mouseDragged(int x, int y, int button){
 }
 
-void testApp::mousePressed(int x, int y, int button){
+void ofApp::mousePressed(int x, int y, int button){
 }
 
-void testApp::mouseReleased(int x, int y, int button){
+void ofApp::mouseReleased(int x, int y, int button){
 }
 
-void testApp::windowResized(int w, int h){
+void ofApp::windowResized(int w, int h){
 }
 
-void testApp::gotMessage(ofMessage msg){
+void ofApp::gotMessage(ofMessage msg){
 }
 
-void testApp::dragEvent(ofDragInfo dragInfo){
+void ofApp::dragEvent(ofDragInfo dragInfo){
 }

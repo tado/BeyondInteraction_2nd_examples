@@ -1,6 +1,6 @@
-#include "testApp.h"
+#include "ofApp.h"
 
-void testApp::setup(){
+void ofApp::setup(){
     ofBackground(0,0,0);
     
     //幅320pixel、高さ240pixelでビデオ取り込み初期化
@@ -19,7 +19,7 @@ void testApp::setup(){
     threshold = 100;
 }
 
-void testApp::update(){
+void ofApp::update(){
     //新規にフレームを取り込んだかを判定する変数
     bool bNewFrame = false;
     //最後に取り込んだフレームから変化があったかを判定
@@ -28,7 +28,7 @@ void testApp::update(){
     //新規のフレームの場合とりこみ実行
     if (bNewFrame){
         //OpenCVで解析するカラー画像領域に取得した映像を格納
-        colorImg.setFromPixels(vidGrabber.getPixels(), 320,240);
+        colorImg.setFromPixels(vidGrabber.getPixels());
         //取り込んだカラー映像をグレースケールに変換
         grayImage = colorImg;
         //新規に背景を記録する場合
@@ -47,7 +47,7 @@ void testApp::update(){
     }
 }
 
-void testApp::draw(){
+void ofApp::draw(){
     //取り込んだ画像を(10,10)の位置に表示
     colorImg.draw(10,10);
     //グレースケールに変換した画像を(340,10)の位置に表示
@@ -60,7 +60,7 @@ void testApp::draw(){
     contourFinder.draw(340, 500);
 }
 
-void testApp::keyPressed(int key){
+void ofApp::keyPressed(int key){
     switch (key){
         case ' ': //スペースキーで背景を学習モードに
             bLearnBakground = true;
@@ -76,26 +76,26 @@ void testApp::keyPressed(int key){
     }
 }
 
-void testApp::keyReleased(int key){
+void ofApp::keyReleased(int key){
 }
 
-void testApp::mouseMoved(int x, int y ){
+void ofApp::mouseMoved(int x, int y ){
 }
 
-void testApp::mouseDragged(int x, int y, int button){
+void ofApp::mouseDragged(int x, int y, int button){
 }
 
-void testApp::mousePressed(int x, int y, int button){
+void ofApp::mousePressed(int x, int y, int button){
 }
 
-void testApp::mouseReleased(int x, int y, int button){
+void ofApp::mouseReleased(int x, int y, int button){
 }
 
-void testApp::windowResized(int w, int h){
+void ofApp::windowResized(int w, int h){
 }
 
-void testApp::gotMessage(ofMessage msg){
+void ofApp::gotMessage(ofMessage msg){
 }
 
-void testApp::dragEvent(ofDragInfo dragInfo){
+void ofApp::dragEvent(ofDragInfo dragInfo){
 }

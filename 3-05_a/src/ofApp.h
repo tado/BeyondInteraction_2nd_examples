@@ -4,7 +4,7 @@
 #include "ofxBox2d.h"
 #include "CustomRect.h"
 
-class testApp : public ofBaseApp{
+class ofApp : public ofBaseApp{
     
 public:
     void setup();
@@ -22,7 +22,7 @@ public:
     void gotMessage(ofMessage msg);
     
 	ofxBox2d box2d; //Box2dのインスタンス
-	vector <CustomRect> particles; //パーティクルのVector配列
+    vector <shared_ptr<CustomRect> > particles; //パーティクルのVector配列
     ofxBox2dRect dac; //中心の星(ofxBox2dRect)
 	ofImage particleImage; //パーティクル画像
 	ofImage dacImage; //中心の星の画像

@@ -7,8 +7,8 @@ void CustomJoint::draw()
     //接続する2つの物体の位置を取得
     b2Vec2 p1 = joint->GetAnchorA();
     b2Vec2 p2 = joint->GetAnchorB();
-    p1 *= OFX_BOX2D_SCALE;
-    p2 *= OFX_BOX2D_SCALE;
+    //p1 *= OFX_BOX2D_SCALE;
+    //p2 *= OFX_BOX2D_SCALE;
     
     //接続する距離に応じて透明度を調整して、線を描く
     //2つの物体の距離を算出
@@ -22,7 +22,7 @@ void CustomJoint::draw()
     //透明度を距離に応じて変化させる。距離が近いほど濃くなる
     ofSetColor(255, 255, 255, 100-(dist/3.0));
     //線を描画
-    ofLine(p1.x, p1.y, p2.x, p2.y);
+    ofDrawLine(p1.x, p1.y, p2.x, p2.y);
     //スムース描画をoffに
     ofDisableSmoothing();
 }
